@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="黃裕元演講與工作坊紀錄：從大量文獻到研究洞見——文獻計量分析的選題、實作與研究應用。"/>
+  <title>演講與工作坊｜Yu-Yuan Huang</title>
+  <style>
+    :root{
+      --bg:#f6f3ee;--paper:#fffdf8;--paper2:#fbf8f2;--ink:#26302f;--muted:#68716d;
+      --sage:#8d9b8a;--sage2:#e5e9df;--clay:#bd9b88;--clay2:#efe4dc;--blue:#6f858f;
+      --teal:#2f5558;--line:#ddd6ca;--shadow:0 16px 44px rgba(42,48,46,.10);
+      --radius:22px;--max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",Arial,sans-serif;line-height:1.8;font-size:16px}
+    a{color:var(--teal);text-decoration:none}
+    a:hover{text-decoration:underline}
+    button{font:inherit}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+    .skip{position:absolute;left:-999px}
+    .skip:focus{left:16px;top:12px;background:#fff;padding:10px 14px;border-radius:10px;z-index:50}
+    header{position:sticky;top:0;background:rgba(246,243,238,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:20}
+    .topbar{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:750;letter-spacing:.02em;color:var(--ink)}
+    .brand:hover{text-decoration:none}
+    .mark{width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,var(--sage),var(--clay));display:grid;place-items:center;color:#fff;font-size:15px;flex:0 0 auto}
+    .pageLabel{font-size:13px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    .backLink{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 13px;color:#3e4946;font-size:14px;white-space:nowrap}
+    .backLink:hover{background:var(--sage2);text-decoration:none}
+    .hero{padding:74px 0 58px}
+    .heroGrid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,.55fr);gap:54px;align-items:end}
+    .eyebrow{display:inline-flex;gap:9px;align-items:center;color:var(--teal);font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:32px;height:1px;background:var(--teal);display:inline-block}
+    h1,h2{font-family:Georgia,"Times New Roman","Noto Serif TC",serif;font-weight:600;letter-spacing:-.025em}
+    h1{font-size:clamp(38px,5.5vw,66px);line-height:1.12;margin:20px 0 18px;max-width:920px}
+    .subtitle{font-size:clamp(18px,2vw,22px);color:#4d5955;max-width:780px;margin:0}
+    .heroMeta{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
+    .pill{border:1px solid var(--line);background:rgba(255,253,248,.72);border-radius:999px;padding:7px 12px;font-size:14px;color:#4d5955}
+    .eventCard{background:linear-gradient(180deg,var(--paper),var(--paper2));border:1px solid var(--line);border-radius:var(--radius);padding:11px 16px;box-shadow:0 10px 26px rgba(42,48,46,.055)}
+    .eventCard dl{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px}
+    .eventCard dl>div{padding:6px 0 7px;border-bottom:1px solid var(--line)}
+    .eventCard dl>div:nth-last-child(-n+2){border-bottom:0}
+    .eventCard dt{font-size:10px;line-height:1.35;color:var(--clay);font-weight:750;letter-spacing:.1em;text-transform:uppercase}
+    .eventCard dd{margin:2px 0 0;color:#3f4b48;font-size:13px;line-height:1.45}
+    .section{padding:64px 0;border-top:1px solid rgba(221,214,202,.75)}
+    .sectionHead{display:grid;grid-template-columns:250px 1fr;gap:34px;margin-bottom:28px}
+    .kicker{font-size:13px;color:var(--clay);font-weight:750;letter-spacing:.13em;text-transform:uppercase}
+    h2{font-size:clamp(30px,4vw,42px);line-height:1.2;margin:7px 0 0}
+    .lead{font-size:18px;color:#4d5955;max-width:800px;margin:0}
+    .sectionHead>.lead{padding-top:32px}
+    .storyGrid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:34px;align-items:start}
+    .story{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(24px,4vw,38px);box-shadow:0 10px 26px rgba(42,48,46,.055)}
+    .story p{margin:0 0 1.2em;color:#45514e}
+    .story p:last-child{margin-bottom:0}
+    .story .opening{font-size:20px;line-height:1.75;color:var(--ink)}
+    .quote{margin:28px 0;padding:18px 0 18px 24px;border-left:3px solid var(--sage);font-family:Georgia,"Times New Roman","Noto Serif TC",serif;font-size:21px;line-height:1.65;color:#33433f}
+    .carousel{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:14px;box-shadow:var(--shadow);position:sticky;top:94px;overflow:hidden}
+    .slides{position:relative}
+    .slide{display:none;margin:0}
+    .slide.isActive{display:block;animation:fade .55s ease both}
+    .mediaFrame{aspect-ratio:16/10;background:#e9e6df;border-radius:20px;overflow:hidden;display:grid;place-items:center}
+    .mediaFrame img{width:100%;height:100%;object-fit:contain;display:block}
+    figcaption{min-height:116px;padding:17px 12px 9px;color:#4d5955;font-size:14px;line-height:1.7}
+    .carouselControls{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 8px 6px}
+    .controlGroup{display:flex;align-items:center;gap:8px}
+    .iconBtn{width:38px;height:38px;border-radius:999px;border:1px solid var(--line);background:var(--paper2);color:var(--teal);cursor:pointer;display:grid;place-items:center}
+    .iconBtn:hover{background:var(--sage2)}
+    .iconBtn:focus-visible,.dot:focus-visible,.backLink:focus-visible,a:focus-visible{outline:3px solid rgba(47,85,88,.28);outline-offset:3px}
+    .dots{display:flex;align-items:center;gap:7px}
+    .dot{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:#c8c6be;cursor:pointer}
+    .dot.isActive{width:24px;border-radius:999px;background:var(--teal)}
+    .counter{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:42px;text-align:right}
+    .bookSpotlight{display:grid;justify-items:center;text-align:center;margin:0 0 42px}
+    .bookLink{display:inline-block;border-radius:8px;outline-offset:8px}
+    .bookLink img{display:block;width:min(230px,58vw);height:auto;filter:drop-shadow(0 18px 20px rgba(42,48,46,.16));transition:transform .28s ease,filter .28s ease}
+    .bookLink:hover img,.bookLink:focus-visible img{transform:translateY(-12px) scale(1.025);filter:drop-shadow(0 30px 28px rgba(42,48,46,.24))}
+    .bookCaption{margin-top:14px;color:var(--muted);font-size:14px}
+    .bookCaption strong{display:block;color:var(--ink);font-family:Georgia,"Times New Roman","Noto Serif TC",serif;font-size:20px;font-weight:600}
+    .contactBand{display:flex;align-items:center;justify-content:space-between;gap:24px;background:linear-gradient(135deg,var(--teal),#456c6e);border-radius:28px;padding:clamp(25px,5vw,46px);color:#fff}
+    .contactBand h2{margin:0 0 8px;color:#fff}
+    .contactBand p{margin:0;color:rgba(255,255,255,.78)}
+    .mailBtn{display:inline-flex;align-items:center;justify-content:center;background:var(--paper);color:var(--teal);border-radius:999px;padding:12px 18px;font-weight:700;white-space:nowrap}
+    .mailBtn:hover{text-decoration:none;background:var(--sage2)}
+    .footer{padding:42px 0;color:var(--muted);font-size:14px}
+    .srOnly{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @keyframes fade{from{opacity:.25;transform:translateY(4px)}to{opacity:1;transform:none}}
+    @media(max-width:900px){
+      .heroGrid,.storyGrid,.sectionHead{grid-template-columns:1fr}
+      .heroGrid{gap:30px}.sectionHead{gap:12px}.sectionHead>.lead{padding-top:0}.carousel{position:relative;top:auto}.eventCard{max-width:620px}
+    }
+    @media(max-width:620px){
+      .wrap{padding:0 16px}.topbar{min-height:64px}.pageLabel{display:none}.hero{padding:48px 0 42px}
+      .section{padding:48px 0}.eventCard dl{grid-template-columns:1fr}.eventCard dl>div:nth-last-child(2){border-bottom:1px solid var(--line)}.contactBand{align-items:flex-start;flex-direction:column}.mailBtn{width:100%}
+      .carousel{padding:10px;border-radius:23px}.mediaFrame{border-radius:16px}figcaption{min-height:150px;padding-inline:8px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">跳至主要內容</a>
+  <header>
+    <div class="wrap topbar">
+      <a class="brand js-return-home" href="../index.html" aria-label="關閉活動頁並返回 Yu-Yuan Huang 首頁">
+        <span class="mark">YYH</span>
+        <span>Yu-Yuan Huang</span>
+      </a>
+      <span class="pageLabel">Talk &amp; Workshop</span>
+      <a class="backLink js-return-home" href="../index.html">← 返回首頁</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap heroGrid">
+        <div>
+          <div class="eyebrow">Talk &amp; Workshop</div>
+          <h1>從大量文獻到研究洞見</h1>
+          <p class="subtitle">文獻計量分析的選題、實作與研究應用</p>
+          <div class="heroMeta" aria-label="活動基本資訊">
+            <span class="pill">2026.09.18</span>
+            <span class="pill">國立臺灣科技大學</span>
+            <span class="pill">10:20–13:10</span>
+          </div>
+        </div>
+        <aside class="eventCard" aria-label="活動資料">
+          <dl>
+            <div><dt>邀請單位</dt><dd><a href="https://www.gidle.ntust.edu.tw/" target="_blank" rel="noopener">臺科大數位學習與教育研究所</a></dd></div>
+            <div><dt>邀請人</dt><dd>黃博聖教授</dd></div>
+            <div><dt>講者</dt><dd>黃裕元</dd></div>
+            <div><dt>參與對象</dt><dd>30位碩一學生及5位博士生</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div><div class="kicker">Field Notes</div><h2>在研究剛開始的地方</h2></div>
+          <p class="lead">從「題目可以從哪裡開始」出發，陪伴不同研究階段的同學，把模糊的研究興趣轉化為可以繼續追問的問題；再沿著文獻脈絡、知識結構與研究落差，在大量資料之中逐步辨認自己的位置，找到下一步可以踏實前進的方向。</p>
+        </div>
+
+        <div class="storyGrid">
+          <article class="story">
+            <p class="opening">受國立臺灣科技大學數位學習與教育研究所黃博聖教授邀請，來到臺科大與碩、博士生分享文獻計量分析的選題、實作與研究應用。</p>
+
+            <p>當天教室裡以30位碩一學生為主。多數同學才剛開始接觸學術研究，仍在摸索自己的研究興趣，以及一篇研究究竟該從哪裡開始；另外也有5位博士生參與，希望從已累積的閱讀與研究經驗中，為自己的題目找到更清楚的定位。</p>
+
+            <p>大家所處的研究階段雖然不同，面對的困惑卻有些相似：讀了許多文獻之後，下一步是什麼？怎麼知道一個題目值不值得繼續？又如何從別人已經做過的研究中，找到自己可以再往前走的位置？</p>
+
+            <div class="quote">每一張圖的背後，都應該連回一個真正想回答的問題。</div>
+
+            <p>這次分享從這些很實際的困惑出發，依序談到文獻計量的基本概念、研究問題的形成、資料庫與檢索式設計、資料清洗轉換、分析工具，以及圖表的閱讀與詮釋。比起記住多少指標或軟體功能，我更希望同學能理解工具與研究問題之間的關係。</p>
+
+            <p><strong>雖然只是三小時的分享，</strong>要在有限時間裡談完一套完整的方法並不容易，但仍希望能為剛踏入研究的同學提供一張可以帶著走的地圖。研究方向往往不是突然出現的，而是在一次次閱讀、比較與提問中，逐漸變得清晰。</p>
+
+            <p>對碩一學生而言，這或許是一扇剛打開的門；對博士生而言，也可能是一個重新整理研究位置的機會。能在同一間教室裡，陪伴不同階段的研究者一起梳理問題、觀看圖譜，也重新思考自己與文獻之間的關係，是這次分享最有意思的部分。</p>
+
+            <p>謝謝黃博聖教授的邀請，也謝謝當天一起投入這段學習歷程的每一位同學。</p>
+          </article>
+
+          <section class="carousel" aria-roledescription="carousel" aria-label="演講活動照片" tabindex="0" id="carousel">
+            <div class="slides">
+              <figure class="slide isActive" data-slide="0" aria-hidden="false">
+                <div class="mediaFrame"><img src="20260918_NTUST_GIDLE/pic1.NTUST.GIDLE_20260918.jpg" alt="演講者黃裕元與黃博聖教授手持《文獻計量學實作指南》合影" loading="eager" decoding="async"/></div>
+                <figcaption>演講者黃裕元（左）與黃博聖教授（右）於演講後合影。黃教授肯定《文獻計量學實作指南》能協助研究者更有效率地梳理文獻脈絡，逐步定位研究方向。</figcaption>
+              </figure>
+              <figure class="slide" data-slide="1" aria-hidden="true">
+                <div class="mediaFrame"><img src="20260918_NTUST_GIDLE/pic2.NTUST.GIDLE_20260918.jpg" alt="黃裕元於臺科大說明科學圖譜與關係網絡" loading="lazy" decoding="async"/></div>
+                <figcaption>以科學圖譜為例，說明如何透過關係網絡觀察知識結構，從看似繁複的節點與連結中，辨識研究群集、核心概念及值得繼續追問的問題。</figcaption>
+              </figure>
+              <figure class="slide" data-slide="2" aria-hidden="true">
+                <div class="mediaFrame"><img src="20260918_NTUST_GIDLE/pic3.NTUST.GIDLE_20260918.jpg" alt="課堂中示範 HistCite 引文歷史圖" loading="lazy" decoding="async"/></div>
+                <figcaption>示範 HistCite 引文歷史圖，帶領同學觀察文獻節點、引用連結及 LCS／GCS 指標，從引用路徑理解一個研究主題的知識傳承與發展過程。</figcaption>
+              </figure>
+              <figure class="slide" data-slide="3" aria-hidden="true">
+                <div class="mediaFrame"><img src="20260918_NTUST_GIDLE/ppt1.png" alt="從大量文獻到研究洞見演講簡報封面" loading="lazy" decoding="async"/></div>
+                <figcaption>演講以「從大量文獻到研究洞見」為題，結合《文獻計量學實作指南》，帶領碩、博士生從研究選題、資料處理與工具實作出發，逐步將大量書目資料轉化為可理解、可論證的研究發現。</figcaption>
+              </figure>
+            </div>
+
+            <div class="carouselControls">
+              <div class="controlGroup">
+                <button class="iconBtn" type="button" id="prevBtn" aria-label="上一張照片">←</button>
+                <button class="iconBtn" type="button" id="pauseBtn" aria-label="暫停自動輪播" aria-pressed="false">Ⅱ</button>
+                <button class="iconBtn" type="button" id="nextBtn" aria-label="下一張照片">→</button>
+              </div>
+              <div class="dots" role="tablist" aria-label="選擇照片">
+                <button class="dot isActive" type="button" data-goto="0" role="tab" aria-selected="true" aria-label="顯示第1張照片"></button>
+                <button class="dot" type="button" data-goto="1" role="tab" aria-selected="false" aria-label="顯示第2張照片"></button>
+                <button class="dot" type="button" data-goto="2" role="tab" aria-selected="false" aria-label="顯示第3張照片"></button>
+                <button class="dot" type="button" data-goto="3" role="tab" aria-selected="false" aria-label="顯示第4張照片"></button>
+              </div>
+              <span class="counter" id="counter">1 / 4</span>
+            </div>
+            <p class="srOnly" aria-live="polite" id="slideStatus">目前顯示第1張，共4張</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <figure class="bookSpotlight">
+          <a class="bookLink" href="https://www.wunan.com.tw/bookdetail?NO=17808" target="_blank" rel="noopener" aria-label="另開新頁查看《文獻計量學實作指南》書籍資訊">
+            <img src="assets/bibliometrix_book.png" alt="《文獻計量學實作指南：從知識圖譜到研究洞見的方法、工具與實例》書封" loading="lazy" decoding="async"/>
+          </a>
+          <figcaption class="bookCaption"><span>延伸閱讀</span><strong>《文獻計量學實作指南》</strong></figcaption>
+        </figure>
+        <div class="contactBand">
+          <div>
+            <div class="kicker" style="color:rgba(255,255,255,.65)">Invitation</div>
+            <h2>演講與工作坊邀約</h2>
+            <p>文獻計量、研究選題、科學圖譜、研究設計與分析工具實作。</p>
+          </div>
+          <a class="mailBtn" href="mailto:eureka.huang@gmail.com">eureka.huang@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="wrap">© 2026 Yu-Yuan Huang. Designed for GitHub Pages.</div></footer>
+
+  <script>
+    (function(){
+      const homeUrl=new URL('../index.html',window.location.href).href;
+      document.querySelectorAll('.js-return-home').forEach(link=>link.addEventListener('click',event=>{
+        event.preventDefault();
+        if(window.opener&&!window.opener.closed){
+          try{
+            window.opener.focus();
+            window.close();
+            window.setTimeout(()=>{if(!window.closed)window.location.assign(homeUrl);},120);
+          }catch(error){window.location.assign(homeUrl);}
+        }else{
+          window.location.assign(homeUrl);
+        }
+      }));
+
+      const carousel=document.getElementById('carousel');
+      const slides=[...carousel.querySelectorAll('.slide')];
+      const dots=[...carousel.querySelectorAll('.dot')];
+      const prev=document.getElementById('prevBtn');
+      const next=document.getElementById('nextBtn');
+      const pause=document.getElementById('pauseBtn');
+      const counter=document.getElementById('counter');
+      const status=document.getElementById('slideStatus');
+      const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let index=0;
+      let timer=null;
+      let userPaused=reduceMotion;
+      let touchStartX=0;
+
+      function show(nextIndex,announce=true){
+        index=(nextIndex+slides.length)%slides.length;
+        slides.forEach((slide,i)=>{
+          const active=i===index;
+          slide.classList.toggle('isActive',active);
+          slide.setAttribute('aria-hidden',String(!active));
+        });
+        dots.forEach((dot,i)=>{
+          const active=i===index;
+          dot.classList.toggle('isActive',active);
+          dot.setAttribute('aria-selected',String(active));
+        });
+        counter.textContent=`${index+1} / ${slides.length}`;
+        if(announce) status.textContent=`目前顯示第${index+1}張，共${slides.length}張`;
+      }
+
+      function stop(){
+        if(timer){window.clearInterval(timer);timer=null;}
+      }
+
+      function start(){
+        stop();
+        const interacting=carousel.matches(':hover')||carousel.contains(document.activeElement);
+        if(!userPaused&&!document.hidden&&!interacting){timer=window.setInterval(()=>show(index+1,false),6000);}
+      }
+
+      function setPaused(value){
+        userPaused=value;
+        pause.textContent=value?'▶':'Ⅱ';
+        pause.setAttribute('aria-pressed',String(value));
+        pause.setAttribute('aria-label',value?'繼續自動輪播':'暫停自動輪播');
+        value?stop():start();
+      }
+
+      prev.addEventListener('click',()=>{show(index-1);start();});
+      next.addEventListener('click',()=>{show(index+1);start();});
+      pause.addEventListener('click',()=>setPaused(!userPaused));
+      dots.forEach(dot=>dot.addEventListener('click',()=>{show(Number(dot.dataset.goto));start();}));
+      carousel.addEventListener('mouseenter',stop);
+      carousel.addEventListener('mouseleave',start);
+      carousel.addEventListener('focusin',stop);
+      carousel.addEventListener('focusout',event=>{if(!carousel.contains(event.relatedTarget))start();});
+      carousel.addEventListener('keydown',event=>{
+        if(event.key==='ArrowLeft'){event.preventDefault();show(index-1);start();}
+        if(event.key==='ArrowRight'){event.preventDefault();show(index+1);start();}
+      });
+      carousel.addEventListener('touchstart',event=>{touchStartX=event.changedTouches[0].clientX;},{passive:true});
+      carousel.addEventListener('touchend',event=>{
+        const distance=event.changedTouches[0].clientX-touchStartX;
+        if(Math.abs(distance)>45){show(index+(distance<0?1:-1));start();}
+      },{passive:true});
+      document.addEventListener('visibilitychange',()=>document.hidden?stop():start());
+
+      show(0,false);
+      setPaused(userPaused);
+    })();
+  </script>
+</body>
+</html>
