@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="黃裕元演講與工作坊紀錄：從大量文獻到研究洞見——文獻計量分析的選題、實作與研究應用。"/>
+  <meta name="description" content="黃裕元演講與工作坊紀錄：文獻讀不完，研究題目怎麼找。"/>
   <title>演講與工作坊｜Yu-Yuan Huang</title>
   <style>
     :root{
@@ -26,7 +26,19 @@
     .brand{display:flex;align-items:center;gap:12px;font-weight:750;letter-spacing:.02em;color:var(--ink)}
     .brand:hover{text-decoration:none}
     .mark{width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,var(--sage),var(--clay));display:grid;place-items:center;color:#fff;font-size:15px;flex:0 0 auto}
-    .pageLabel{font-size:13px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+    .siteNav{display:flex;align-items:center;justify-content:center;gap:8px;margin-left:auto}
+    .navDropdown{position:relative}
+    .navDropdown summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:7px;border:1px solid transparent;border-radius:999px;padding:8px 12px;color:#3e4946;font-size:14px;font-weight:650;white-space:nowrap;user-select:none}
+    .navDropdown summary::-webkit-details-marker{display:none}
+    .navDropdown summary:after{content:"⌄";font-size:13px;color:var(--muted);transform:translateY(-1px);transition:transform .2s ease}
+    .navDropdown[open] summary{background:var(--sage2);border-color:var(--line)}
+    .navDropdown[open] summary:after{transform:rotate(180deg) translateY(-1px)}
+    .dropdownMenu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);width:min(430px,calc(100vw - 32px));padding:8px;background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);z-index:40}
+    .navDropdown:last-child .dropdownMenu{left:auto;right:0;transform:none;width:min(260px,calc(100vw - 32px))}
+    .dropdownMenu a,.menuPlaceholder{display:block;border-radius:11px;padding:10px 12px;font-size:13px;line-height:1.55;color:#3f4b48}
+    .dropdownMenu a:hover{background:var(--sage2);text-decoration:none}
+    .dropdownMenu a[aria-current="page"]{background:var(--clay2);color:var(--ink);font-weight:700}
+    .menuPlaceholder{color:var(--muted);background:var(--paper2);cursor:default}
     .backLink{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 13px;color:#3e4946;font-size:14px;white-space:nowrap}
     .backLink:hover{background:var(--sage2);text-decoration:none}
     .hero{padding:74px 0 58px}
@@ -67,11 +79,15 @@
     .controlGroup{display:flex;align-items:center;gap:8px}
     .iconBtn{width:38px;height:38px;border-radius:999px;border:1px solid var(--line);background:var(--paper2);color:var(--teal);cursor:pointer;display:grid;place-items:center}
     .iconBtn:hover{background:var(--sage2)}
-    .iconBtn:focus-visible,.dot:focus-visible,.backLink:focus-visible,a:focus-visible{outline:3px solid rgba(47,85,88,.28);outline-offset:3px}
+    .iconBtn:focus-visible,.dot:focus-visible,.backLink:focus-visible,.navDropdown summary:focus-visible,a:focus-visible{outline:3px solid rgba(47,85,88,.28);outline-offset:3px}
     .dots{display:flex;align-items:center;gap:7px}
     .dot{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:#c8c6be;cursor:pointer}
     .dot.isActive{width:24px;border-radius:999px;background:var(--teal)}
     .counter{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:42px;text-align:right}
+    .eventSwitch{padding:0 0 64px}
+    .eventSwitchLink{display:flex;align-items:center;justify-content:space-between;gap:18px;border:1px solid var(--line);border-radius:18px;background:var(--paper);padding:18px 22px;color:var(--ink);font-family:Georgia,"Times New Roman","Noto Serif TC",serif;font-size:clamp(17px,2vw,21px);box-shadow:0 10px 26px rgba(42,48,46,.055);transition:transform .2s ease,background .2s ease}
+    .eventSwitchLink:hover{background:var(--sage2);text-decoration:none;transform:translateY(-2px)}
+    .eventSwitchLink .switchArrow{color:var(--teal);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:750;white-space:nowrap}
     .bookSpotlight{display:grid;justify-items:center;text-align:center;margin:0 0 42px}
     .bookLink{display:inline-block;border-radius:8px;outline-offset:8px}
     .bookLink img{display:block;width:min(230px,58vw);height:auto;filter:drop-shadow(0 18px 20px rgba(42,48,46,.16));transition:transform .28s ease,filter .28s ease}
@@ -88,12 +104,12 @@
     @keyframes fade{from{opacity:.25;transform:translateY(4px)}to{opacity:1;transform:none}}
     @media(max-width:900px){
       .heroGrid,.storyGrid,.sectionHead{grid-template-columns:1fr}
-      .heroGrid{gap:30px}.sectionHead{gap:12px}.sectionHead>.lead{padding-top:0}.story{grid-row:2}.carousel{grid-row:1;position:relative;top:auto}.eventCard{max-width:620px}
+      .topbar{flex-wrap:wrap;padding-top:10px;padding-bottom:10px}.siteNav{order:3;width:100%;margin-left:0}.heroGrid{gap:30px}.sectionHead{gap:12px}.sectionHead>.lead{padding-top:0}.story{grid-row:2}.carousel{grid-row:1;position:relative;top:auto}.eventCard{max-width:620px}
     }
     @media(max-width:620px){
-      .wrap{padding:0 16px}.topbar{min-height:64px}.pageLabel{display:none}.hero{padding:48px 0 42px}
+      .wrap{padding:0 16px}.topbar{min-height:64px}.brand>span:last-child{display:none}.siteNav{justify-content:flex-start}.navDropdown summary{padding:7px 10px}.navDropdown:first-child .dropdownMenu{left:0;transform:none}.hero{padding:48px 0 42px}
       .section{padding:48px 0}.eventCard dl{grid-template-columns:1fr}.eventCard dl>div:nth-last-child(2){border-bottom:1px solid var(--line)}.contactBand{align-items:flex-start;flex-direction:column}.mailBtn{width:100%}
-      .carousel{padding:10px;border-radius:23px}.mediaFrame{border-radius:16px}figcaption{min-height:150px;padding-inline:8px}
+      .carousel{padding:10px;border-radius:23px}.mediaFrame{border-radius:16px}figcaption{min-height:150px;padding-inline:8px}.eventSwitch{padding-bottom:48px}.eventSwitchLink{padding:15px 17px}
     }
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
   </style>
@@ -106,7 +122,19 @@
         <span class="mark">YYH</span>
         <span>Yu-Yuan Huang</span>
       </a>
-      <span class="pageLabel">Talk &amp; Workshop</span>
+      <nav class="siteNav" aria-label="演講與工作坊活動導覽">
+        <details class="navDropdown">
+          <summary>演講分享</summary>
+          <div class="dropdownMenu">
+            <a href="20260921_NTUE_PsyC.html" aria-current="page">2026年9月21日：文獻讀不完，研究題目怎麼找？</a>
+            <a href="20260918_NTUST_GIDLE.html">2026年9月18日：從大量文獻到研究洞見</a>
+          </div>
+        </details>
+        <details class="navDropdown">
+          <summary>工作坊</summary>
+          <div class="dropdownMenu"><span class="menuPlaceholder" aria-disabled="true">活動紀錄準備中</span></div>
+        </details>
+      </nav>
       <a class="backLink js-return-home" href="../index.html">← 返回首頁</a>
     </div>
   </header>
@@ -116,20 +144,20 @@
       <div class="wrap heroGrid">
         <div>
           <div class="eyebrow">Talk &amp; Workshop</div>
-          <h1>從大量文獻到研究洞見</h1>
-          <p class="subtitle">文獻計量分析的選題、實作與研究應用</p>
+          <h1>文獻讀不完，研究題目怎麼找</h1>
+          <p class="subtitle">從問題意識、分析工具到研究洞見</p>
           <div class="heroMeta" aria-label="活動基本資訊">
-            <span class="pill">2026.09.18</span>
-            <span class="pill">國立臺灣科技大學</span>
-            <span class="pill">10:20–13:10</span>
+            <span class="pill">2026.09.21</span>
+            <span class="pill">國立臺北教育大學</span>
+            <span class="pill">10:00–12:00</span>
           </div>
         </div>
         <aside class="eventCard" aria-label="活動資料">
           <dl>
-            <div><dt>邀請單位</dt><dd><a href="https://www.gidle.ntust.edu.tw/" target="_blank" rel="noopener">臺科大數位學習與教育研究所</a></dd></div>
-            <div><dt>邀請人</dt><dd>黃博聖教授</dd></div>
+            <div><dt>邀請單位</dt><dd><a href="https://pacntue.ntue.edu.tw/" target="_blank" rel="noopener">國北教心理與諮商學系</a></dd></div>
+            <div><dt>邀請人</dt><dd>陳柏霖教授（系主任）</dd></div>
             <div><dt>講者</dt><dd>黃裕元</dd></div>
-            <div><dt>參與對象</dt><dd>30位碩一學生及5位博士生</dd></div>
+            <div><dt>參與對象</dt><dd>碩一、碩三學生約30人</dd></div>
           </dl>
         </aside>
       </div>
@@ -138,46 +166,50 @@
     <section class="section">
       <div class="wrap">
         <div class="sectionHead">
-          <div><div class="kicker">Field Notes</div><h2>在研究剛開始的地方</h2></div>
-          <p class="lead">從「題目可以從哪裡開始」出發，陪伴不同研究階段的同學，把模糊的研究興趣轉化為可以繼續追問的問題；再沿著文獻脈絡、知識結構與研究落差，在大量資料之中逐步辨認自己的位置，找到下一步可以踏實前進的方向。</p>
+          <div><div class="kicker">Field Notes</div><h2>從讀不完的文獻開始</h2></div>
+          <p class="lead">從研究生最常遇到的選題困境出發，帶著同學由問題意識進入文獻脈絡，運用 HistCite、CiteSpace 與 Bibliometrix 整理知識結構、辨識研究缺口，讓模糊的興趣逐步收斂為可以實際推進的研究問題。</p>
         </div>
 
         <div class="storyGrid">
           <article class="story">
-            <p class="opening">受國立臺灣科技大學數位學習與教育研究所黃博聖教授邀請，來到臺科大與碩、博士生分享文獻計量分析的選題、實作與研究應用。</p>
+            <p class="opening">受國立臺北教育大學心理與諮商學系陳柏霖系主任邀請，來到國北教與碩士班同學分享「文獻讀不完，研究題目怎麼找」，從研究選題與問題意識出發，介紹如何運用 HistCite、CiteSpace 與 Bibliometrix 等文獻計量分析工具，梳理研究領域的發展脈絡，逐步找到適合深入探索的研究方向。</p>
 
-            <p>當天教室裡以30位碩一學生為主。多數同學才剛開始接觸學術研究，仍在摸索自己的研究興趣，以及一篇研究究竟該從哪裡開始；另外也有5位博士生參與，希望從已累積的閱讀與研究經驗中，為自己的題目找到更清楚的定位。</p>
+            <p>當天約有30位同學參與，主要包括剛進入研究所、開始接觸學術研究的碩一同學，及正投入畢業論文選題與寫作的碩三同學。兩個年級所面對的研究階段不同，卻有著相似的困惑：面對不斷增加的文獻，究竟應該從哪裡開始？讀過許多文獻後，如何進一步形成問題意識？又要怎麼判斷一個題目是否具有研究價值與繼續發展的空間？這次分享便從這些最直接的研究困境開始。</p>
 
-            <p>大家所處的研究階段雖然不同，面對的困惑卻有些相似：讀了許多文獻之後，下一步是什麼？怎麼知道一個題目值不值得繼續？又如何從別人已經做過的研究中，找到自己可以再往前走的位置？</p>
+            <p>文獻計量分析並不是用軟體自動產生題目，也不能取代研究者對核心文獻的深入閱讀；它更像是一種協助研究者重新整理視野的方法。透過書目資料、引用關係、關鍵詞及主題聚類，可以先從較大的知識結構理解一個領域，再回到具體文獻，辨識重要理論、主要研究路徑、持續受到關注的問題，及尚待深入探索的位置。</p>
 
-            <div class="quote">每一張圖的背後，都應該連回一個真正想回答的問題。</div>
+            <div class="quote">研究題目不是從某一張圖中直接出現，而是在閱讀、分析、比較與持續提問的過程中逐漸成形。</div>
 
-            <p>這次分享從這些很實際的困惑出發，依序談到文獻計量的基本概念、研究問題的形成、資料庫與檢索式設計、資料清洗轉換、分析工具，以及圖表的閱讀與詮釋。比起記住多少指標或軟體功能，我更希望同學能理解工具與研究問題之間的關係。</p>
+            <p>在工具應用方面，分享 HistCite 如何透過引文歷史圖與引用指標，協助研究者辨識一個主題的重要文獻及知識傳承路徑；也介紹 CiteSpace 的共被引網絡、主題聚類、時間線與突現分析，觀察研究領域的知識基礎、發展階段及可能的研究前沿；並透過 Bibliometrix 的描述性分析、關係網絡、主題地圖與主題演化，說明如何從書目資料中探索研究概念之間的連結與轉變。</p>
 
-            <p><strong>雖然只是三小時的分享，</strong>要在有限時間裡談完一套完整的方法並不容易，但仍希望能為剛踏入研究的同學提供一張可以帶著走的地圖。研究方向往往不是突然出現的，而是在一次次閱讀、比較與提問中，逐漸變得清晰。</p>
+            <p>除了分析工具的操作，更重要的是將每一項分析重新連回研究問題。從資料庫選擇、檢索式設計、資料清理與分析方法，到圖譜判讀與研究發現的敘寫，每一個步驟都會影響研究者最後能看見什麼。科學圖譜呈現的不是研究答案本身，而是一組值得進一步查證、比較與解釋的線索；研究洞見則來自研究者將圖譜結果、核心文獻與領域知識相互對照之後所形成的判斷。</p>
 
-            <p>對碩一學生而言，這或許是一扇剛打開的門；對博士生而言，也可能是一個重新整理研究位置的機會。能在同一間教室裡，陪伴不同階段的研究者一起梳理問題、觀看圖譜，也重新思考自己與文獻之間的關係，是這次分享最有意思的部分。</p>
+            <p><strong>兩小時的分享無法一次解決選題與論文寫作中的所有問題，</strong>但希望能提供一套可以實際開始的研究路徑。研究者先釐清自己真正關心的問題，再透過文獻計量工具建立領域全貌，從中辨識值得閱讀的核心文獻與可能發展的研究方向，最後回到文獻內容與研究情境，逐步收斂成可以執行的研究問題。</p>
 
-            <p>謝謝黃博聖教授的邀請，也謝謝當天一起投入這段學習歷程的每一位同學。</p>
+            <p>對碩一同學而言，這次分享或許提供了一張開始接近學術研究的地圖；對正在撰寫論文的碩三同學而言，則可能是重新整理文獻、檢視研究定位與加快研究推進的另一種方法。謝謝陳柏霖系主任的邀請，也謝謝當天參與分享、投入討論的每一位同學。</p>
           </article>
 
           <section class="carousel" aria-roledescription="carousel" aria-label="演講活動照片" tabindex="0" id="carousel">
             <div class="slides">
               <figure class="slide isActive" data-slide="0" aria-hidden="false">
-                <div class="mediaFrame"><img src="20260918_NTUST_GIDLE/pic1.NTUST.GIDLE_20260918.jpg" alt="演講者黃裕元與黃博聖教授手持《文獻計量學實作指南》合影" loading="eager" decoding="async"/></div>
-                <figcaption>演講者黃裕元（左）與黃博聖教授（右）於演講後合影。黃教授肯定《文獻計量學實作指南》能協助研究者更有效率地梳理文獻脈絡，逐步定位研究方向。</figcaption>
+                <div class="mediaFrame"><img src="20260921_NTUE_PsyC/pic1.NTUE.PsyC_20260921.jpg" alt="黃裕元於國立臺北教育大學分享如何運用文獻計量工具尋找研究題目" loading="eager" decoding="async"/></div>
+                <figcaption>以「文獻讀不完，研究題目怎麼找」為題，分享如何運用 HistCite、CiteSpace 與 Bibliometrix 等文獻計量分析工具，梳理研究脈絡、辨識研究缺口，逐步找到適合發展的研究方向。</figcaption>
               </figure>
               <figure class="slide" data-slide="1" aria-hidden="true">
-                <div class="mediaFrame"><img src="20260918_NTUST_GIDLE/pic2.NTUST.GIDLE_20260918.jpg" alt="黃裕元於臺科大說明科學圖譜與關係網絡" loading="lazy" decoding="async"/></div>
-                <figcaption>以科學圖譜為例，說明如何透過關係網絡觀察知識結構，從看似繁複的節點與連結中，辨識研究群集、核心概念及值得繼續追問的問題。</figcaption>
+                <div class="mediaFrame"><img src="20260921_NTUE_PsyC/pic2.NTUE.PsyC_20260921.jpg" alt="國立臺北教育大學心理與諮商學系文獻計量分析分享現場" loading="lazy" decoding="async"/></div>
+                <figcaption>感謝國立臺北教育大學心理與諮商學系陳柏霖系主任邀請，與碩士班同學分享如何透過文獻計量分析建立領域全貌，從大量研究中定位值得持續探索的問題。</figcaption>
               </figure>
               <figure class="slide" data-slide="2" aria-hidden="true">
-                <div class="mediaFrame"><img src="20260918_NTUST_GIDLE/pic3.NTUST.GIDLE_20260918.jpg" alt="課堂中示範 HistCite 引文歷史圖" loading="lazy" decoding="async"/></div>
-                <figcaption>示範 HistCite 引文歷史圖，帶領同學觀察文獻節點、引用連結及 LCS／GCS 指標，從引用路徑理解一個研究主題的知識傳承與發展過程。</figcaption>
+                <div class="mediaFrame"><img src="20260921_NTUE_PsyC/pic3.NTUE.PsyC_20260921.jpg" alt="講者說明研究問題、資料檢索與科學圖譜判讀的分析流程" loading="lazy" decoding="async"/></div>
+                <figcaption>從論文寫作最關鍵的問題意識出發，串連資料庫檢索、書目資料整理、分析工具選擇與科學圖譜判讀，說明如何將分析結果轉化為可以支持研究選題的具體線索。</figcaption>
               </figure>
               <figure class="slide" data-slide="3" aria-hidden="true">
-                <div class="mediaFrame"><img src="20260918_NTUST_GIDLE/ppt1.png" alt="從大量文獻到研究洞見演講簡報封面" loading="lazy" decoding="async"/></div>
-                <figcaption>演講以「從大量文獻到研究洞見」為題，結合《文獻計量學實作指南》，帶領碩、博士生從研究選題、資料處理與工具實作出發，逐步將大量書目資料轉化為可理解、可論證的研究發現。</figcaption>
+                <div class="mediaFrame"><img src="20260921_NTUE_PsyC/pic4.NTUE.PsyC_20260921.jpg" alt="碩一與碩三學生參與文獻計量分析工作坊" loading="lazy" decoding="async"/></div>
+                <figcaption>參與者主要包括初入碩士班的碩一同學，及正投入畢業論文選題與寫作的碩三同學，約30人參與。不同研究階段的同學，也共同面對如何從大量文獻中形成研究問題的挑戰。</figcaption>
+              </figure>
+              <figure class="slide" data-slide="4" aria-hidden="true">
+                <div class="mediaFrame"><img src="20260921_NTUE_PsyC/pic5.NTUE.PsyC_20260921.jpg" alt="工作坊帶領同學思考如何從大量文獻形成研究問題" loading="lazy" decoding="async"/></div>
+                <figcaption>帶領同學從「讀了很多文獻，下一步是什麼？」開始思考，理解科學圖譜不是研究答案，而是協助研究者辨識核心文獻、主題變化與研究空白的探索工具。</figcaption>
               </figure>
             </div>
 
@@ -192,12 +224,22 @@
                 <button class="dot" type="button" data-goto="1" role="tab" aria-selected="false" aria-label="顯示第2張照片"></button>
                 <button class="dot" type="button" data-goto="2" role="tab" aria-selected="false" aria-label="顯示第3張照片"></button>
                 <button class="dot" type="button" data-goto="3" role="tab" aria-selected="false" aria-label="顯示第4張照片"></button>
+                <button class="dot" type="button" data-goto="4" role="tab" aria-selected="false" aria-label="顯示第5張照片"></button>
               </div>
-              <span class="counter" id="counter">1 / 4</span>
+              <span class="counter" id="counter">1 / 5</span>
             </div>
-            <p class="srOnly" aria-live="polite" id="slideStatus">目前顯示第1張，共4張</p>
+            <p class="srOnly" aria-live="polite" id="slideStatus">目前顯示第1張，共5張</p>
           </section>
         </div>
+      </div>
+    </section>
+
+    <section class="eventSwitch" aria-label="切換活動紀錄">
+      <div class="wrap">
+        <a class="eventSwitchLink" href="20260918_NTUST_GIDLE.html">
+          <span>2026年9月18日：從大量文獻到研究洞見</span>
+          <span class="switchArrow" aria-hidden="true">&gt;&gt;</span>
+        </a>
       </div>
     </section>
 
@@ -238,6 +280,17 @@
           window.location.assign(homeUrl);
         }
       }));
+
+      const navMenus=[...document.querySelectorAll('.navDropdown')];
+      navMenus.forEach(menu=>menu.addEventListener('toggle',()=>{
+        if(menu.open) navMenus.forEach(other=>{if(other!==menu) other.open=false;});
+      }));
+      document.addEventListener('click',event=>{
+        if(!event.target.closest('.siteNav')) navMenus.forEach(menu=>{menu.open=false;});
+      });
+      document.addEventListener('keydown',event=>{
+        if(event.key==='Escape') navMenus.forEach(menu=>{menu.open=false;});
+      });
 
       const carousel=document.getElementById('carousel');
       const slides=[...carousel.querySelectorAll('.slide')];
